@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugStalker.UnitTests", "BugStalker.UnitTests\BugStalker.UnitTests.csproj", "{0F7D1545-7C8C-4927-9235-68BB30AF049E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugStalker.Domain", "BugStalker.Domain\BugStalker.Domain.csproj", "{FF307864-3C1C-4474-9D2B-2270B47876D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugStalker.ConsoleUI", "BugStalker.ConsoleUI\BugStalker.ConsoleUI.csproj", "{94C04307-462F-452D-823B-341D929B29A9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0F7D1545-7C8C-4927-9235-68BB30AF049E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F7D1545-7C8C-4927-9235-68BB30AF049E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F7D1545-7C8C-4927-9235-68BB30AF049E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F7D1545-7C8C-4927-9235-68BB30AF049E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF307864-3C1C-4474-9D2B-2270B47876D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF307864-3C1C-4474-9D2B-2270B47876D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF307864-3C1C-4474-9D2B-2270B47876D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF307864-3C1C-4474-9D2B-2270B47876D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94C04307-462F-452D-823B-341D929B29A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94C04307-462F-452D-823B-341D929B29A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94C04307-462F-452D-823B-341D929B29A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94C04307-462F-452D-823B-341D929B29A9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

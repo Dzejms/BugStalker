@@ -1,0 +1,5 @@
+<Modules>
+  <Module PersistentId="0F7D1545-7C8C-4927-9235-68BB30AF049E" ModuleId="BugStalker.UnitTests" />
+  <Module PersistentId="FF307864-3C1C-4474-9D2B-2270B47876D2" ModuleId="BugStalker.Domain" />
+  <Module PersistentId="94C04307-462F-452D-823B-341D929B29A9" ModuleId="BugStalker.ConsoleUI" />
+</Modules>
