@@ -1,0 +1,6 @@
+C:\Users\James\Documents\Code\BugStalker\BugStalker.ConsoleUI\obj\Debug\BugStalker.ConsoleUI.csprojResolveAssemblyReference.cache
+C:\Users\James\Documents\Code\BugStalker\BugStalker.ConsoleUI\bin\Debug\BugStalker.ConsoleUI.exe.config
+C:\Users\James\Documents\Code\BugStalker\BugStalker.ConsoleUI\bin\Debug\BugStalker.ConsoleUI.exe
+C:\Users\James\Documents\Code\BugStalker\BugStalker.ConsoleUI\bin\Debug\BugStalker.ConsoleUI.pdb
+C:\Users\James\Documents\Code\BugStalker\BugStalker.ConsoleUI\obj\Debug\BugStalker.ConsoleUI.exe
+C:\Users\James\Documents\Code\BugStalker\BugStalker.ConsoleUI\obj\Debug\BugStalker.ConsoleUI.pdb

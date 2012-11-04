@@ -1,0 +1,7 @@
+C:\Users\James\Documents\Code\BugStalker\BugStalker.UnitTests\bin\Debug\BugStalker.UnitTests.dll
+C:\Users\James\Documents\Code\BugStalker\BugStalker.UnitTests\bin\Debug\BugStalker.UnitTests.pdb
+C:\Users\James\Documents\Code\BugStalker\BugStalker.UnitTests\bin\Debug\nunit.framework.dll
+C:\Users\James\Documents\Code\BugStalker\BugStalker.UnitTests\bin\Debug\nunit.framework.xml
+C:\Users\James\Documents\Code\BugStalker\BugStalker.UnitTests\obj\Debug\BugStalker.UnitTests.csprojResolveAssemblyReference.cache
+C:\Users\James\Documents\Code\BugStalker\BugStalker.UnitTests\obj\Debug\BugStalker.UnitTests.dll
+C:\Users\James\Documents\Code\BugStalker\BugStalker.UnitTests\obj\Debug\BugStalker.UnitTests.pdb
