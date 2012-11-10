@@ -44,13 +44,12 @@ namespace BugStalker.Domain
         private List<ScreenShot> screenShots = new List<ScreenShot>(); 
         public void GrabFullScreen()
         {
-            Bitmap screenShot = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height, PixelFormat.Format32bppArgb);
-            Graphics graphics = Graphics.FromImage(screenShot);
+            Bitmap bmp = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height, PixelFormat.Format32bppArgb);
+            Graphics graphics = Graphics.FromImage(bmp);
             graphics.CopyFromScreen(Screen.PrimaryScreen.Bounds.X, Screen.PrimaryScreen.Bounds.Y, 0, 0, Screen.PrimaryScreen.Bounds.Size, CopyPixelOperation.SourceCopy);
-            screenShot.Save(Path.ChangeExtension(Path.GetTempFileName(), "jpg"), ImageFormat.Jpeg);
-            screenShot.Save(Path.ChangeExtension(Path.GetTempFileName(), "bmp"), ImageFormat.Bmp);
-            screenShot.Save(Path.ChangeExtension(Path.GetTempFileName(), "tif"), ImageFormat.Tiff);
-            screenShot.Save(Path.ChangeExtension(Path.GetTempFileName(), "png"), ImageFormat.Png);
+            bmp.Save(Path.ChangeExtension(Path.GetTempFileName(), "png"), ImageFormat.Png);
+            ScreenShot screenShot = new ScreenShot(bmp);
+            screenShots.Add(screenShot);
         }
 
         public IList<ScreenShot> Screens { get { return screenShots; } }
