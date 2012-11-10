@@ -48,6 +48,12 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BugStalker.Domain\BugStalker.Domain.csproj">
+      <Project>{ff307864-3c1c-4474-9d2b-2270b47876d2}</Project>
+      <Name>BugStalker.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

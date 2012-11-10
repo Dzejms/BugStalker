@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using BugStalker.Domain;
 
 namespace BugStalker.UnitTests
 {
@@ -21,40 +22,21 @@ namespace BugStalker.UnitTests
 
             // Assert
             Assert.That(grabber.NumberOfScreens == 1);
-
         }
-    }
 
-    internal class FakeScreenGrabber : IScreenGrabber
-    {
-        private readonly List<ScreenShot> screenShots;
-
-        public FakeScreenGrabber()
+        [Test]
+        public void TestScreenShot ()
         {
-            screenShots = new List<ScreenShot>();
-        }
+            // Arrange
+            IScreenGrabber grabber = new BitmapScreenGrabber();
 
-        public void GrabFullScreen()
-        {
-            screenShots.Add(new ScreenShot());
-        }
+            // Act
+            grabber.GrabFullScreen();
 
-        public IList<ScreenShot> Screens { 
-            get { return screenShots; }
+            // Assert
+            Assert.That(grabber.NumberOfScreens == 1);
         }
-
-        public int NumberOfScreens { get { return screenShots.Count; } }
     }
 
-    internal interface IScreenGrabber
-    {
-        void GrabFullScreen();
-        IList<ScreenShot> Screens { get; }
-        int NumberOfScreens { get; }
-    }
-
-    internal class ScreenShot
-    {
-
-    }
+    
 }

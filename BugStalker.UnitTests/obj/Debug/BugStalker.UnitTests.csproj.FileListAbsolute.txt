@@ -5,3 +5,5 @@ C:\Users\James\Documents\Code\BugStalker\BugStalker.UnitTests\bin\Debug\nunit.fr
 C:\Users\James\Documents\Code\BugStalker\BugStalker.UnitTests\obj\Debug\BugStalker.UnitTests.csprojResolveAssemblyReference.cache
 C:\Users\James\Documents\Code\BugStalker\BugStalker.UnitTests\obj\Debug\BugStalker.UnitTests.dll
 C:\Users\James\Documents\Code\BugStalker\BugStalker.UnitTests\obj\Debug\BugStalker.UnitTests.pdb
+C:\Users\James\Documents\Code\BugStalker\BugStalker.UnitTests\bin\Debug\BugStalker.Domain.dll
+C:\Users\James\Documents\Code\BugStalker\BugStalker.UnitTests\bin\Debug\BugStalker.Domain.pdb
