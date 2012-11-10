@@ -10,7 +10,7 @@ namespace BugStalker.Domain
     {
         public ScreenShot GrabFullScreen()
         {
-            return new ScreenShot(null, "");
+            return new ScreenShot(null);
         }
     }
 }

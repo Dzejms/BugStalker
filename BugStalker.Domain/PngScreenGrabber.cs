@@ -14,10 +14,7 @@ namespace BugStalker.Domain
             Bitmap bmp = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height, PixelFormat.Format32bppArgb);
             Graphics graphics = Graphics.FromImage(bmp);
             graphics.CopyFromScreen(Screen.PrimaryScreen.Bounds.X, Screen.PrimaryScreen.Bounds.Y, 0, 0, Screen.PrimaryScreen.Bounds.Size, CopyPixelOperation.SourceCopy);
-            string filePath = Path.ChangeExtension(Path.GetTempFileName(), "png");
-            bmp.Save(filePath, ImageFormat.Png);
-            ScreenShot screenShot = new ScreenShot(bmp, filePath);
-            return screenShot;
+            return new ScreenShot(bmp);
         }
 
     }

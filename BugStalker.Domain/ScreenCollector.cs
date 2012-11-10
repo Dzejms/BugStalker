@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -12,17 +13,21 @@ namespace BugStalker.Domain
         private readonly IScreenGrabber grabber;
         private readonly int fps;
         private readonly int seconds;
+        private readonly string filePath;
         private readonly Queue<ScreenShot> screens;
         private int maxScreens;
         private CancellationTokenSource cancellationTokenSource;
 
-        public ScreenCollector(IScreenGrabber grabber, int fps = 10, int seconds = 300)
+        public ScreenCollector(IScreenGrabber grabber, int fps = 10, int seconds = 300, string filePath = "")
         {
             this.grabber = grabber;
             this.fps = fps;
             this.seconds = seconds;
+            this.filePath = filePath;
             screens = new Queue<ScreenShot>();
             maxScreens = fps * seconds;
+            if (String.IsNullOrEmpty(filePath))
+                this.filePath = Path.Combine(Path.GetFullPath(Path.GetTempPath()), "BugStalker");
         }
 
         public int NumberOfFrames
@@ -58,6 +63,14 @@ namespace BugStalker.Domain
         public void Stop()
         {
             cancellationTokenSource.Cancel();    
+        }
+
+        public void Flush()
+        {
+            foreach (ScreenShot screenShot in screens)
+            {
+                
+            }
         }
 
 
