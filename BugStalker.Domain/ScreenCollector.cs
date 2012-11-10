@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -9,20 +10,24 @@ namespace BugStalker.Domain
 {
     public class ScreenCollector
     {
-        private readonly IScreenGrabber grabber;
+        private readonly ScreenGrabber grabber;
         private readonly int fps;
         private readonly int seconds;
-        private readonly Queue<ScreenShot> screens;
+        private readonly string filePath;
+        private readonly Queue<IScreenShot> screens;
         private int maxScreens;
         private CancellationTokenSource cancellationTokenSource;
 
-        public ScreenCollector(IScreenGrabber grabber, int fps = 10, int seconds = 300)
+        public ScreenCollector(ScreenGrabber grabber, int fps = 10, int seconds = 300, string filePath = "")
         {
             this.grabber = grabber;
             this.fps = fps;
             this.seconds = seconds;
-            screens = new Queue<ScreenShot>();
+            this.filePath = filePath;
+            screens = new Queue<IScreenShot>();
             maxScreens = fps * seconds;
+            if (String.IsNullOrEmpty(filePath))
+                this.filePath = Path.Combine(Path.GetFullPath(Path.GetTempPath()), "BugStalker");
         }
 
         public int NumberOfFrames
@@ -45,7 +50,7 @@ namespace BugStalker.Domain
                 Thread.Sleep( 1000 / fps);
                 if (NumberOfFrames > maxScreens)
                 {
-                    ScreenShot screenShot = screens.Dequeue();
+                    IScreenShot screenShot = screens.Dequeue();
                     screenShot.Delete();
                 }
                 if (token.IsCancellationRequested)
@@ -58,6 +63,14 @@ namespace BugStalker.Domain
         public void Stop()
         {
             cancellationTokenSource.Cancel();    
+        }
+
+        public void Flush()
+        {
+            foreach (PngScreenShot screenShot in screens)
+            {
+                screenShot.Save(filePath);
+            }
         }
 
 

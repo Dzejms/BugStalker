@@ -41,12 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PngScreenGrabber.cs" />
-    <Compile Include="FakeScreenGrabber.cs" />
-    <Compile Include="IScreenGrabber.cs" />
+    <Compile Include="ScreenGrabber.cs" />
+    <Compile Include="PngScreenShot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScreenCollector.cs" />
-    <Compile Include="ScreenShot.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
