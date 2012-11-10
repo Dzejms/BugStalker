@@ -6,15 +6,27 @@ using System.Windows.Forms;
 
 namespace BugStalker.Domain
 {
-    public class PngScreenGrabber : IScreenGrabber
+    public enum ImageFormat
     {
-        private List<ScreenShot> screenShots = new List<ScreenShot>(); 
-        public ScreenShot GrabFullScreen()
+        Png = 0,
+        Test = 1
+    }
+
+    public class ScreenGrabber
+    {
+        private ImageFormat imageFormat;
+
+        public ScreenGrabber(ImageFormat imageFormat)
+        {
+            this.imageFormat = imageFormat;
+        }
+
+        public IScreenShot GrabFullScreen()
         {
             Bitmap bmp = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height, PixelFormat.Format32bppArgb);
             Graphics graphics = Graphics.FromImage(bmp);
             graphics.CopyFromScreen(Screen.PrimaryScreen.Bounds.X, Screen.PrimaryScreen.Bounds.Y, 0, 0, Screen.PrimaryScreen.Bounds.Size, CopyPixelOperation.SourceCopy);
-            return new ScreenShot(bmp);
+            return imageFormat == ImageFormat.Png ? new PngScreenShot(bmp) : null;
         }
 
     }

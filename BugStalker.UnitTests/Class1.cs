@@ -12,11 +12,18 @@ namespace BugStalker.UnitTests
     [TestFixture]
     internal class ScreenCaptureTests
     {
+        ScreenGrabber grabber;
+
+        [SetUp]
+        public void SetUp()
+        {
+            grabber = new ScreenGrabber(ImageFormat.Test);
+        }
+
         [Test]
         public void CanCaptureCurrentFullScreenToMemory()
         {
             // Arrange
-            IScreenGrabber grabber = new FakeScreenGrabber();
             ScreenCollector collector = new ScreenCollector(grabber, 1, 1);
 
             // Act
@@ -32,7 +39,6 @@ namespace BugStalker.UnitTests
         public void TestScreenShot()
         {
             // Arrange
-            IScreenGrabber grabber = new PngScreenGrabber();
             ScreenCollector collector = new ScreenCollector(grabber, 1, 1);
 
             // Act
@@ -48,7 +54,6 @@ namespace BugStalker.UnitTests
         public void CanGrabScreensAtSpecifiedFrameRate()
         {
             // Arrange
-            IScreenGrabber grabber = new PngScreenGrabber();
             ScreenCollector collector = new ScreenCollector(grabber, 10, 1);
 
             // Act
@@ -58,7 +63,6 @@ namespace BugStalker.UnitTests
 
             // Assert
             Assert.AreEqual(10, collector.NumberOfFrames);
-
         }
     }
 
