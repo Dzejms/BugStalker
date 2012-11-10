@@ -8,23 +8,9 @@ namespace BugStalker.Domain
 {
     public class FakeScreenGrabber : IScreenGrabber
     {
-        private readonly List<ScreenShot> screenShots;
-
-        public FakeScreenGrabber()
+        public ScreenShot GrabFullScreen()
         {
-            screenShots = new List<ScreenShot>();
+            return new ScreenShot(null, "");
         }
-
-        public void GrabFullScreen()
-        {
-            screenShots.Add(new ScreenShot(null));
-        }
-
-        public IList<ScreenShot> Screens
-        {
-            get { return screenShots; }
-        }
-
-        public int NumberOfScreens { get { return screenShots.Count; } }
     }
 }

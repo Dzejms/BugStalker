@@ -17,41 +17,47 @@ namespace BugStalker.UnitTests
         {
             // Arrange
             IScreenGrabber grabber = new FakeScreenGrabber();
+            ScreenCollector collector = new ScreenCollector(grabber, 1, 1);
 
             // Act
-            grabber.GrabFullScreen();
+            collector.Start();
+            Thread.Sleep(1000);
+            collector.Stop();
 
             // Assert
-            Assert.That(grabber.NumberOfScreens == 1);
+            Assert.AreEqual(1, collector.NumberOfFrames);
         }
 
         [Test]
         public void TestScreenShot()
         {
             // Arrange
-            IScreenGrabber grabber = new BitmapScreenGrabber();
+            IScreenGrabber grabber = new PngScreenGrabber();
+            ScreenCollector collector = new ScreenCollector(grabber, 1, 1);
 
             // Act
-            grabber.GrabFullScreen();
+            collector.Start();
+            Thread.Sleep(1000);
+            collector.Stop();
 
             // Assert
-            Assert.That(grabber.NumberOfScreens == 1);
+            Assert.AreEqual(1, collector.NumberOfFrames);
         }
 
         [Test]
         public void CanGrabScreensAtSpecifiedFrameRate()
         {
             // Arrange
-            IScreenGrabber grabber = new BitmapScreenGrabber();
-            ScreenCollector collector = new ScreenCollector(grabber);
+            IScreenGrabber grabber = new PngScreenGrabber();
+            ScreenCollector collector = new ScreenCollector(grabber, 10, 1);
 
             // Act
             collector.Start();
-            Thread.Sleep(1099);
+            Thread.Sleep(1000);
             collector.Stop();
 
             // Assert
-            Assert.That(collector.NumberOfFrames == 10);
+            Assert.AreEqual(10, collector.NumberOfFrames);
 
         }
     }

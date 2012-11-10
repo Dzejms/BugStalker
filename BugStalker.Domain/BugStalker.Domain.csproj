@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BitmapScreenGrabber.cs" />
+    <Compile Include="PngScreenGrabber.cs" />
     <Compile Include="FakeScreenGrabber.cs" />
     <Compile Include="IScreenGrabber.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
