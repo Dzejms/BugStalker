@@ -12,22 +12,21 @@ namespace BugStalker.Domain
     {
         private readonly ScreenGrabber grabber;
         private readonly int fps;
-        private readonly int seconds;
         private readonly string filePath;
         private readonly Queue<IScreenShot> screens;
-        private int maxScreens;
+        private readonly int maxScreens;
         private CancellationTokenSource cancellationTokenSource;
 
         public ScreenCollector(ScreenGrabber grabber, int fps = 10, int seconds = 300, string filePath = "")
         {
             this.grabber = grabber;
             this.fps = fps;
-            this.seconds = seconds;
-            this.filePath = filePath;
             screens = new Queue<IScreenShot>();
             maxScreens = fps * seconds;
             if (String.IsNullOrEmpty(filePath))
                 this.filePath = Path.Combine(Path.GetFullPath(Path.GetTempPath()), "BugStalker");
+            else
+                this.filePath = filePath;
         }
 
         public int NumberOfFrames
@@ -47,7 +46,7 @@ namespace BugStalker.Domain
             while (true)
             {
                 screens.Enqueue(grabber.GrabFullScreen());
-                Thread.Sleep( 1000 / fps);
+                Thread.Sleep(1000 / fps);
                 if (NumberOfFrames > maxScreens)
                 {
                     IScreenShot screenShot = screens.Dequeue();
@@ -62,10 +61,11 @@ namespace BugStalker.Domain
 
         public void Stop()
         {
-            cancellationTokenSource.Cancel();    
+            cancellationTokenSource.Cancel();
+            flush();
         }
 
-        public void Flush()
+        private void flush()
         {
             foreach (PngScreenShot screenShot in screens)
             {
