@@ -26,8 +26,27 @@ namespace BugStalker.Domain
             Bitmap bmp = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height, PixelFormat.Format32bppArgb);
             Graphics graphics = Graphics.FromImage(bmp);
             graphics.CopyFromScreen(Screen.PrimaryScreen.Bounds.X, Screen.PrimaryScreen.Bounds.Y, 0, 0, Screen.PrimaryScreen.Bounds.Size, CopyPixelOperation.SourceCopy);
-            return imageFormat == ImageFormat.Png ? new PngScreenShot(bmp) : null;
+            if (imageFormat == ImageFormat.Png) 
+                return new PngScreenShot(bmp);
+            else 
+                return new FakeScreenShot();
         }
 
+    }
+
+    public class FakeScreenShot : IScreenShot
+    {
+        public bool Saved = false;
+        public bool Deleted = false;
+
+        public void Save(string filePath)
+        {
+            Saved = true;
+        }
+
+        public void Delete()
+        {
+            Deleted = true;
+        }
     }
 }
