@@ -1,5 +1,0 @@
-C:\Users\James\Documents\Code\BugStalker\BugStalker.Domain\bin\Debug\BugStalker.Domain.dll
-C:\Users\James\Documents\Code\BugStalker\BugStalker.Domain\bin\Debug\BugStalker.Domain.pdb
-C:\Users\James\Documents\Code\BugStalker\BugStalker.Domain\obj\Debug\BugStalker.Domain.csprojResolveAssemblyReference.cache
-C:\Users\James\Documents\Code\BugStalker\BugStalker.Domain\obj\Debug\BugStalker.Domain.dll
-C:\Users\James\Documents\Code\BugStalker\BugStalker.Domain\obj\Debug\BugStalker.Domain.pdb
