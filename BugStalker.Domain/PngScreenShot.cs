@@ -1,5 +1,7 @@
+using System;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 
 namespace BugStalker.Domain
 {
@@ -20,7 +22,7 @@ namespace BugStalker.Domain
 
         public void Save(string filePath)
         {
-            bitmap.Save(filePath, System.Drawing.Imaging.ImageFormat.Png);
+            bitmap.Save(Path.ChangeExtension(filePath, ".png"), System.Drawing.Imaging.ImageFormat.Png);
         }
 
         public void Delete()

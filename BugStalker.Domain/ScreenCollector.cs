@@ -67,9 +67,10 @@ namespace BugStalker.Domain
 
         private void flush()
         {
-            foreach (IScreenShot screenShot in screens)
+            IScreenShot[] screenShots = screens.ToArray();
+            for(var i = 0; i < screenShots.Length; i++)
             {
-                screenShot.Save(filePath);
+                screenShots[i].Save(Path.Combine(filePath, i.ToString()));
             }
         }
 
