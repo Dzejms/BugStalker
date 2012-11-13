@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using AviFile;
 
 namespace BugStalker.Domain
 {
@@ -67,11 +68,17 @@ namespace BugStalker.Domain
 
         private void flush()
         {
+            AviManager aviManager = new AviManager(Path.ChangeExtension(Path.Combine(filePath, Guid.NewGuid().ToString()), "avi"), false);
+            IScreenShot screenShot = screens.Dequeue();
+            VideoStream aviStream = aviManager.AddVideoStream(true, 2, screenShot.GetBitmap());
             IScreenShot[] screenShots = screens.ToArray();
-            for(var i = 0; i < screenShots.Length; i++)
+            screenShot.Delete();
+            for (var i = 1; i < screenShots.Length; i++)
             {
-                screenShots[i].Save(Path.Combine(filePath, i.ToString()));
+                aviStream.AddFrame(screenShot.GetBitmap());
+                screenShot.Delete();
             }
+            aviManager.Close();            
         }
 
 

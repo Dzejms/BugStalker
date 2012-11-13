@@ -7,6 +7,7 @@ namespace BugStalker.Domain
 {
     public interface IScreenShot
     {
+        Bitmap GetBitmap();
         void Save(string filePath);
         void Delete();
     }
@@ -14,6 +15,11 @@ namespace BugStalker.Domain
     public class PngScreenShot : IScreenShot
     {
         private readonly Bitmap bitmap;
+
+        public Bitmap GetBitmap()
+        {
+            return bitmap;
+        }
 
         public PngScreenShot(Bitmap bitmap)
         {
