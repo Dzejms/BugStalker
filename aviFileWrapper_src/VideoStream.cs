@@ -358,28 +358,28 @@ namespace AviFile
 
             options.lpParms = IntPtr.Zero;
 			options.lpFormat = IntPtr.Zero;
-			Avi.AVISaveOptions(IntPtr.Zero, Avi.ICMF_CHOOSE_KEYFRAME | Avi.ICMF_CHOOSE_DATARATE, 1, ref aviStream, ref options);
+			//Avi.AVISaveOptions(IntPtr.Zero, Avi.ICMF_CHOOSE_KEYFRAME | Avi.ICMF_CHOOSE_DATARATE, 1, ref aviStream, ref options);
 			
             //..or set static options
-			/*Avi.AVICOMPRESSOPTIONS opts = new Avi.AVICOMPRESSOPTIONS();
+			Avi.AVICOMPRESSOPTIONS opts = new Avi.AVICOMPRESSOPTIONS();
 			//opts.fccType         = (UInt32)Avi.mmioStringToFOURCC("vids", 0);
 			//opts.fccHandler      = (UInt32)Avi.mmioStringToFOURCC("CVID", 0);
-            opts.fccType = (UInt32)Avi.mmioStringToFOURCC("mrle", 0);
-            opts.fccHandler = (UInt32)Avi.mmioStringToFOURCC("MRLE", 0);
+            opts.fccType = 0;
+            opts.fccHandler = 1668707181;
 			
             opts.dwKeyFrameEvery = 0;
-			opts.dwQuality       = 0;  // 0 .. 10000
-			opts.dwFlags         = 0;  // AVICOMRPESSF_KEYFRAMES = 4
+			opts.dwQuality       = 7500;  // 0 .. 10000
+			opts.dwFlags         = 8;  // AVICOMRPESSF_KEYFRAMES = 4
 			opts.dwBytesPerSecond= 0;
 			opts.lpFormat        = new IntPtr(0);
 			opts.cbFormat        = 0;
 			opts.lpParms         = new IntPtr(0);
 			opts.cbParms         = 0;
-			opts.dwInterleaveEvery = 0;*/
+			opts.dwInterleaveEvery = 0;
 
 			//get the compressed stream
             this.compressOptions = options.ToStruct();
-            int result = Avi.AVIMakeCompressedStream(out compressedStream, aviStream, ref compressOptions, 0);
+            int result = Avi.AVIMakeCompressedStream(out compressedStream, aviStream, ref opts, 0);
             if(result != 0) {
 				throw new Exception("Exception in AVIMakeCompressedStream: "+result.ToString());
 			}

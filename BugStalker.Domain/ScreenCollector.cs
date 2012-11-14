@@ -68,9 +68,10 @@ namespace BugStalker.Domain
 
         private void flush()
         {
+            Console.WriteLine("Writing avi.  {0} frames to process", screens.Count);
             AviManager aviManager = new AviManager(Path.ChangeExtension(Path.Combine(filePath, Guid.NewGuid().ToString()), "avi"), false);
             IScreenShot screenShot = screens.Dequeue();
-            VideoStream aviStream = aviManager.AddVideoStream(true, 1, screenShot.GetBitmap());
+            VideoStream aviStream = aviManager.AddVideoStream(true, 2, screenShot.GetBitmap());
             IScreenShot[] screenShots = screens.ToArray();
             screenShot.Delete();
             for (var i = 1; i < screenShots.Length; i++)
