@@ -37,7 +37,7 @@ namespace BugStalker.ConsoleUI
         [Option("p", "file path", Required = false, DefaultValue = @"C:\Users\James\AppData\Local\Temp", HelpText = "Path where you want to store the screen shots")]
         public string FilePath { get; set; }
 
-        [Option("f", "frames per second", Required = false, DefaultValue = 10, HelpText = "Rate at which the screenshots are captured")]
+        [Option("f", "frames per second", Required = false, DefaultValue = 1, HelpText = "Rate at which the screenshots are captured")]
         public int FramesPerSecond { get; set; }
 
         [Option("m", "minutes", Required = false, DefaultValue = 1, HelpText = "Length of the video")]

@@ -70,12 +70,12 @@ namespace BugStalker.Domain
         {
             AviManager aviManager = new AviManager(Path.ChangeExtension(Path.Combine(filePath, Guid.NewGuid().ToString()), "avi"), false);
             IScreenShot screenShot = screens.Dequeue();
-            VideoStream aviStream = aviManager.AddVideoStream(true, 2, screenShot.GetBitmap());
+            VideoStream aviStream = aviManager.AddVideoStream(true, 1, screenShot.GetBitmap());
             IScreenShot[] screenShots = screens.ToArray();
             screenShot.Delete();
             for (var i = 1; i < screenShots.Length; i++)
             {
-                aviStream.AddFrame(screenShot.GetBitmap());
+                aviStream.AddFrame(screenShots[i].GetBitmap());
                 screenShot.Delete();
             }
             aviManager.Close();            
