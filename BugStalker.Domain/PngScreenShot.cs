@@ -8,32 +8,29 @@ namespace BugStalker.Domain
     public interface IScreenShot
     {
         Bitmap GetBitmap();
-        void Save(string filePath);
         void Delete();
     }
 
     public class PngScreenShot : IScreenShot
     {
-        private readonly Bitmap bitmap;
-
-        public Bitmap GetBitmap()
-        {
-            return bitmap;
-        }
+        private MemoryStream compressedBitmap;
 
         public PngScreenShot(Bitmap bitmap)
         {
-            this.bitmap = bitmap;
+            compressedBitmap = new MemoryStream();
+            bitmap.Save(compressedBitmap, System.Drawing.Imaging.ImageFormat.Png);
+            bitmap.Dispose();
         }
 
-        public void Save(string filePath)
+        public Bitmap GetBitmap()
         {
-            bitmap.Save(Path.ChangeExtension(filePath, ".png"), System.Drawing.Imaging.ImageFormat.Png);
+            return Image.FromStream(compressedBitmap) as Bitmap;
         }
 
         public void Delete()
         {
-            bitmap.Dispose();
+            this.compressedBitmap.Dispose();
+            this.compressedBitmap = null;
         }
     }
 }

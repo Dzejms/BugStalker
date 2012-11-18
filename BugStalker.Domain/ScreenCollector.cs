@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -50,8 +51,7 @@ namespace BugStalker.Domain
                 Thread.Sleep(1000 / fps);
                 if (NumberOfFrames > maxScreens)
                 {
-                    IScreenShot screenShot = screens.Dequeue();
-                    screenShot.Delete();
+                    screens.Dequeue();
                 }
                 if (token.IsCancellationRequested)
                 {
@@ -71,13 +71,16 @@ namespace BugStalker.Domain
             Console.WriteLine("Writing avi.  {0} frames to process", screens.Count);
             AviManager aviManager = new AviManager(Path.ChangeExtension(Path.Combine(filePath, Guid.NewGuid().ToString()), "avi"), false);
             IScreenShot screenShot = screens.Dequeue();
-            VideoStream aviStream = aviManager.AddVideoStream(true, 2, screenShot.GetBitmap());
+            VideoStream aviStream = aviManager.AddVideoStream(true, 10, screenShot.GetBitmap());
             IScreenShot[] screenShots = screens.ToArray();
-            screenShot.Delete();
             for (var i = 1; i < screenShots.Length; i++)
             {
-                aviStream.AddFrame(screenShots[i].GetBitmap());
-                screenShot.Delete();
+                using (Bitmap frame = screenShots[i].GetBitmap())
+                {
+                    aviStream.AddFrame(frame);   
+                }
+                screenShots[i].Delete();
+                Console.Write("{0}, ", i);
             }
             aviManager.Close();            
         }
