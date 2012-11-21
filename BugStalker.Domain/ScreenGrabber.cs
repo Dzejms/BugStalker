@@ -14,22 +14,12 @@ namespace BugStalker.Domain
 
     public class ScreenGrabber
     {
-        private ImageFormat imageFormat;
-
-        public ScreenGrabber(ImageFormat imageFormat)
-        {
-            this.imageFormat = imageFormat;
-        }
-
-        public IScreenShot GrabFullScreen()
+        public static IScreenShot GrabFullScreen()
         {
             Bitmap bmp = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height, PixelFormat.Format32bppArgb);
             Graphics graphics = Graphics.FromImage(bmp);
             graphics.CopyFromScreen(Screen.PrimaryScreen.Bounds.X, Screen.PrimaryScreen.Bounds.Y, 0, 0, Screen.PrimaryScreen.Bounds.Size, CopyPixelOperation.SourceCopy);
-            if (imageFormat == ImageFormat.Png) 
-                return new PngScreenShot(bmp);
-            else 
-                return new FakeScreenShot();
+            return new PngScreenShot(bmp);
         }
 
     }

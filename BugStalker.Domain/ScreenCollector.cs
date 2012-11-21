@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -7,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using AviFile;
+using Timer = System.Timers.Timer;
 
 namespace BugStalker.Domain
 {
@@ -16,6 +18,7 @@ namespace BugStalker.Domain
         private readonly int fps;
         private readonly string filePath;
         private readonly Queue<IScreenShot> screens;
+        ConcurrentQueue<IScreenShot> parallelScreens;
         private readonly int maxScreens;
         private CancellationTokenSource cancellationTokenSource;
 
@@ -33,7 +36,11 @@ namespace BugStalker.Domain
 
         public int NumberOfFrames
         {
-            get { return screens.Count; }
+            get
+            {
+                return parallelScreens.Count;
+                //return screens.Count;
+            }
         }
 
         public void Start()
@@ -47,12 +54,23 @@ namespace BugStalker.Domain
         {
             while (true)
             {
-                screens.Enqueue(grabber.GrabFullScreen());
-                Thread.Sleep(1000 / fps);
-                if (NumberOfFrames > maxScreens)
-                {
-                    screens.Dequeue();
-                }
+                parallelScreens = new ConcurrentQueue<IScreenShot>();
+                Timer screenShotTaker = new Timer(1000 / fps);
+                screenShotTaker.Elapsed += (sender, e) => {
+                    parallelScreens.Enqueue(ScreenGrabber.GrabFullScreen());
+                    if (NumberOfFrames <= maxScreens) return;
+                    IScreenShot screenToDestroy;
+                    parallelScreens.TryDequeue(out screenToDestroy);
+                    screenToDestroy.Delete();
+                };
+                screenShotTaker.Start();
+                //screens.Enqueue(grabber.GrabFullScreen());
+
+                //Thread.Sleep(1000 / fps);
+                //if (NumberOfFrames > maxScreens)
+                //{
+                //    screens.Dequeue();
+                //}
                 if (token.IsCancellationRequested)
                 {
                     break;
