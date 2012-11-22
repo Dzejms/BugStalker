@@ -29,8 +29,11 @@ namespace BugStalker.Domain
 
         public void Delete()
         {
-            this.compressedBitmap.Dispose();
-            this.compressedBitmap = null;
+            if (this.compressedBitmap != null)
+            {
+                this.compressedBitmap.Dispose();
+                this.compressedBitmap = null;
+            }
         }
     }
 }
